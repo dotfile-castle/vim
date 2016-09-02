@@ -1,3 +1,4 @@
+set t_Co=256
 :set background&
 
 call plug#begin('~/.vim/plugged')
@@ -12,11 +13,24 @@ Plug 'scrooloose/syntastic'
 Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
-" get rid of the default mode indicator
-"set noshowmode
+" get rid of mode indicator (redudent with airline)
+set noshowmode
 
 " Resolve: vim-airline doesn't appear until I create a new split
 set laststatus=2
+
+" automatically populate the g:airline_symbols dictionary with the powerline symbols
+let g:airline_powerline_fonts = 1
+
+" Automatically displays all buffers when there's only one tab open.
+let g:airline#extensions#tabline#enabled = 1
+
+" Straight tabs
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" airline theme
+let g:airline_theme='serene'
 
 let NERDTreeShowHidden=1
 "autocmd StdinReadPre * let s:std_in=1
@@ -49,3 +63,27 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l,c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" for tmux to automatically set paste and nopaste mode at the time pasting (as happens in VIM UI)
+
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
