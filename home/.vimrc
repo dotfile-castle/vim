@@ -11,6 +11,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 " get rid of mode indicator (redudent with airline)
