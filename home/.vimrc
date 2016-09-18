@@ -14,6 +14,9 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 call plug#end()
 
+" Enable spellcheck
+set spell spelllang=en_us
+
 " get rid of mode indicator (redudent with airline)
 set noshowmode
 
