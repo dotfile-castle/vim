@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
@@ -14,14 +14,12 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 call plug#end()
 
-" Enable spellcheck
-set spell spelllang=en_us
+" NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" get rid of mode indicator (redudent with airline)
-set noshowmode
-
-" Resolve: vim-airline doesn't appear until I create a new split
-set laststatus=2
+" NERDTree will show hidden files
+let NERDTreeShowHidden=1
 
 " automatically populate the g:airline_symbols dictionary with the powerline symbols
 let g:airline_powerline_fonts = 1
@@ -36,9 +34,14 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " airline theme
 let g:airline_theme='serene'
 
-let NERDTreeShowHidden=1
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" get rid of mode indicator (redudent with airline)
+set noshowmode
+
+" Resolve: vim-airline doesn't appear until I create a new split
+set laststatus=2
+
+" Enable spellcheck
+set spell spelllang=en_us
 
 " Disable line number by default
 set nonumber
