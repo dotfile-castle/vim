@@ -50,6 +50,9 @@ set spell spelllang=en_us
 " Disable line number by default
 set nonumber
 
+" Tabs
+set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+
 " Make searching less sucky
 set hlsearch
 set ignorecase
