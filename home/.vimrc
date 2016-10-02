@@ -46,6 +46,8 @@ set laststatus=2
 
 " Enable spellcheck
 set spell spelllang=en_us
+hi clear SpellBad
+hi SpellBad cterm=undercurl
 
 " Disable line number by default
 set nonumber
