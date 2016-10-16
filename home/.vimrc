@@ -1,5 +1,5 @@
 set t_Co=256
-:set background&
+:set background=dark
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -13,6 +13,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
+Plug 'haya14busa/incsearch.vim'
 call plug#end()
 
 " NERDTree automatically when vim starts up if no files were specified
@@ -43,6 +44,30 @@ set noshowmode
 
 " Resolve: vim-airline doesn't appear until I create a new split
 set laststatus=2
+
+" incsearch.vim
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+augroup incsearch-keymap
+    autocmd!
+    autocmd VimEnter * call s:incsearch_keymap()
+augroup END
+function! s:incsearch_keymap()
+	" Tab to the next match
+    IncSearchNoreMap <Right> <Over>(incsearch-next)
+	" Shift-Tab to the previous match
+    IncSearchNoreMap <Left>  <Over>(incsearch-prev)
+endfunction
 
 " Enable spellcheck
 set spell spelllang=en_us
