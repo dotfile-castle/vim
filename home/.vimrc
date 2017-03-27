@@ -15,6 +15,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'majutsushi/tagbar'
 Plug 'haya14busa/incsearch.vim'
 Plug 'nvie/vim-flake8'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 set list listchars=tab:▷⋅,trail:⋅,nbsp:⋅
