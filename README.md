@@ -9,6 +9,6 @@ pip3 install --user neovim
 nvim --headless +'PlugInstall --sync' +qa
 
 # YCM
-# Requires cmake and mono
+# Requires cmake
 ~/.config/nvim/plugged/YouCompleteMe//install.py --clang-completer --all
 ```
