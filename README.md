@@ -5,6 +5,10 @@ Configuration files for vim
 
 Neovim
 ```sh
-pip install --user neovim
+pip3 install --user neovim
 nvim --headless +'PlugInstall --sync' +qa
+
+# YCM
+# Make sure cmake is available
+~/.config/nvim/plugged/YouCompleteMe//install.py --clang-completer --all
 ```
