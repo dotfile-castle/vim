@@ -6,5 +6,5 @@ Configuration files for vim
 Neovim
 ```sh
 pip install --user neovim
-vim --headless +'PlugInstall --sync' +qa
+nvim --headless +'PlugInstall --sync' +qa
 ```
